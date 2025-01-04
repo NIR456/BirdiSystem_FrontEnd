@@ -1,0 +1,74 @@
+<div class="Employee">
+  <div class="row">
+    <div class="col-sm-2 pr-0">
+      <div class="add-new">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="AddEmployeeDetails(0)"
+        >
+          New
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-4 pl-0">
+      <div class="main">
+        <div class="form-group has-search">
+          <span class="fa fa-search form-searchbox"></span>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Search with Name"
+            (keyup)="SearchEmployeeList($event)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7"></div>
+  </div>
+  <div class="Employee-list">
+    <div class="container">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th scope="col" class="index">Id</th>
+            <th scope="col" class="first-name">FirstName</th>
+            <th scope="col" class="last-name">LastName</th>
+            <th scope="col" class="email-column">Email</th>
+            <th scope="col" class="designation-column">Designation</th>
+            <th scope="col" class="edit-column">Edit</th>
+            <th scope="col" class="delete-column">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let Employee of EmployeeListData | paginate: { itemsPerPage: 10, currentPage: page }">
+            <th scope="row">{{ Employee.id }}</th>
+            <td>{{ Employee.firstName }}</td>
+            <td>{{ Employee.lastName }}</td>
+            <td>{{ Employee.email }}</td>
+            <td>{{ Employee.designation }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-primary"
+                (click)="EditEmployee(Employee.id)"
+              >
+                Edit
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                (click)="DeleteEmployee(Employee.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <pagination-controls (pageChange)="page = $event"></pagination-controls>
+    </div>
+  </div>
+</div>
