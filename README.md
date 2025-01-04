@@ -3,14 +3,10 @@
 ## Table of Contents
 1. [Overview](#overview)
 2. [Technologies Used](#technologies-used)
-3. [Project Setup](#project-setup)
-4. [Folder Structure](#folder-structure)
-5. [Components](#components)
-6. [Services](#services)
-7. [Authentication](#authentication)
-8. [API Integration](#api-integration)
-9. [Running the Application](#running-the-application)
-10. [Testing the Application](#testing-the-application)
+3. [Authentication](#authentication)
+4. [API Integration](#api-integration)
+5. [Running the Application](#running-the-application)
+6. [Testing the Application](#testing-the-application)
 
 ---
 
