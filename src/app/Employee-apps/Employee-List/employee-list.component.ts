@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,AfterViewInit} from '@angular/core';
 import { EmployeeComponent } from '../Add-New/employee.component';
 import { EmployeeService } from '../../Services/employee.service';
 import { Requestmodels } from 'src/app/Models/request.model';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+//import { TokenServiceService } from 'src/app/Services/token-service.service';
 
 @Component({
   selector: 'app-employee-list',
   templateUrl: './employee-list.component.html',
   styleUrls: ['./employee-list.component.sass']
 })
-export class EmployeeListComponent implements OnInit {
+export class EmployeeListComponent implements OnInit,AfterViewInit {
   public EmployeeListData: Array<any> = [];
   public editdata: Array<any> = [];
   public EmployeeListdataForSearch: Array<any> = [];
@@ -19,12 +20,21 @@ export class EmployeeListComponent implements OnInit {
   constructor(
     private Employeeservice: EmployeeService,
     private modalService: NgbModal,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+   // private TokenServices:TokenServiceService
+    
   ) {}
 
   ngOnInit(): void {
    // this.GetEmployeeLoginToken();
-    this.GetEmployeeListData();
+    
+  }
+
+  ngAfterViewInit(): void {
+   // let token = this.TokenServices.getToken();
+   // if(token != null){
+   setTimeout(()=>{this.GetEmployeeListData();},200)
+   // }
   }
 
   GetEmployeeLoginToken() {

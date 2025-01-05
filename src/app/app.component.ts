@@ -1,6 +1,7 @@
 import { Component,OnInit,AfterViewInit} from '@angular/core';
 import { EmployeeService } from './Services/employee.service';
 import { Requestmodels } from 'src/app/Models/request.model';
+import { TokenServiceService } from './Services/token-service.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent implements OnInit,AfterViewInit {
   }
 
   hasToken(): boolean {
-    const token = sessionStorage.getItem('authToken');
+   // const token = sessionStorage.getItem('authToken');
+    let token = localStorage.getItem("authToken");
     return token !== null && token.trim() !== '';
   }
 
@@ -36,7 +38,9 @@ export class AppComponent implements OnInit,AfterViewInit {
     };
     this.Employeeservice.postData(request).subscribe(data => {
       if (data && data.responseStatus) {
-        sessionStorage.setItem('authToken', data.responseObject);
+       // sessionStorage.setItem('authToken', data.responseObject);
+       // this.TokenServices.setToken(data.responseObject);
+       localStorage.setItem('authToken',data.responseObject);
       }
     });
   }

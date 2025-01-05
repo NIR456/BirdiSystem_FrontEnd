@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EmployeeComponent } from './Employee-apps/Add-New/employee.component';
 import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenServiceService } from './Services/token-service.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
     AppRoutingModule,
     
   ],
-  providers: [],
+  providers: [ { provide: HTTP_INTERCEPTORS, useClass: TokenServiceService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
