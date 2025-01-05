@@ -23,7 +23,22 @@ export class EmployeeListComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+   // this.GetEmployeeLoginToken();
     this.GetEmployeeListData();
+  }
+
+  GetEmployeeLoginToken() {
+    let request = new Requestmodels();
+    request.RequestUrl = 'api_employee/Employee/Login';
+    request.RequestObject = {
+      Username: 'nirmal',
+      Password: '123'
+    };
+    this.Employeeservice.postData(request).subscribe(data => {
+      if (data && data.responseStatus) {
+        
+      }
+    });
   }
 
   AddEmployeeDetails(Id: number = 0) {

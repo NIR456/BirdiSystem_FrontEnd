@@ -17,8 +17,10 @@ export class EmployeeService implements OnDestroy {
 
   // GET method
   getData(req: Requestmodels): Observable<any> {
+    const token = sessionStorage.getItem('authToken');
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
     return this.http.get<any>(`${this.apiUrl + req.RequestUrl}`, { headers }).pipe(
       takeUntil(this.destroy$),
@@ -30,8 +32,10 @@ export class EmployeeService implements OnDestroy {
 
   // POST method
   postData(req: Requestmodels): Observable<any> {
+    const token = sessionStorage.getItem('authToken');
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
     });
     return this.http.post<any>(`${this.apiUrl + req.RequestUrl}`, JSON.stringify(req.RequestObject), { headers }).pipe(
       takeUntil(this.destroy$),
